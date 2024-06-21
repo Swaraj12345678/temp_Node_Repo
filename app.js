@@ -1,27 +1,30 @@
-// npm - global command, comes with node
-// npm --version //10.7.0
+// async patterns ->
+// alternatives for callback which we discussed in fs-async.js
 
-// local dependencies - use it only in this particular project
-// npm i <packageName>
+const http = require("http");
 
-// global dependency - use it in any package
-// npm install -g <packageName>
+const server = http.createServer((req, res) => {
+    if (req.url === '/') {
+        res.end("Welcome to the homepage");
+    }
+    else if (req.url === '/about') {
+        // BLOCKING CODE
+        for (let i = 0; i < 100; i++) {
+            for (let j = 0; j < 10; j++) {
+                console.log(`Blocking Code!`);
+            }
+        }
+        res.end("Welcome to the about page!");
+    }
+    else {
+        res.end(`
+            <h1>Oops!!</h1>
+            <p> We can't seem to find the page you are looking for </p>
+            <a href="/">Back home</a>            
+        `)
+    }
+});
 
-// package.json - manifest file (stores important info about the project/ packages)
-// manual approach  (create package.jsonin the root, create properties etc)
-// npm init (step by step, press enter to skip)
-// npm init -y (everything default)
-
-
-// for example purpose we installed lodash and bootstrap packages
-const _ = require('lodash');
-
-// just to experiment -
-const items = [1, [2, [3, [4]]]];
-const newItems = _.flattenDeep(items);
-console.log(newItems);  // [ 1, 2, 3, 4 ]
-
-
-// package.json file plays crucial role while sharing our code in github
-// while sharing on github we don't push node modules as they are very big in size!
-// there dependencies can be used if some clones our project !!
+server.listen(5000, () => {
+    console.log("Server is listening on Port 5000....");
+});
