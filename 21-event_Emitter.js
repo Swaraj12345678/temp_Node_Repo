@@ -1,5 +1,5 @@
 // EventEmitter is a core module in Node.js that provides a way to handle events and event-driven programming. It allows objects (such as servers, files, and streams) to emit events and listeners to handle those events asynchronously.
-
+// --------------------------------------------------------------------------------------------------------------------------------
 // eg1 - Example with Arguments
 /*
 const EventEmitter = require('events');
@@ -13,6 +13,7 @@ emitter.on('response', (name, age) => {
 // Emit the 'response' event with arguments
 emitter.emit('response', 'John', 30);
 */
+// --------------------------------------------------------------------------------------------------------------------------------
 // eg2 - Example with Multiple Listeners
 /*
 const EventEmitter = require('events');
@@ -30,13 +31,14 @@ emitter.on('response', () => {
 // Emit the 'response' event
 emitter.emit('response');
 */
+// --------------------------------------------------------------------------------------------------------------------------------
 /* summary - 
 EventEmitter: The class used to handle events in Node.js.
 .on(eventName, listener): Adds a listener for the specified event.
 .emit(eventName, [...args]): Emits the specified event with optional arguments.
 .off(eventName, listener): Removes a listener from the specified event (use removeListener in older versions of Node.js).
 */
-
+// --------------------------------------------------------------------------------------------------------------------------------
 
 const EventEmitter = require('events'); // returns class
 // instance of class
